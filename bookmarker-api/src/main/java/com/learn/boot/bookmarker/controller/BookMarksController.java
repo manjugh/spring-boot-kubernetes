@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/bookmarks")
@@ -16,7 +18,7 @@ public class BookMarksController {
     private final BookmarkService bookmarkService;
 
     @GetMapping
-    public BookMarkDto getAllBookmarks(@RequestParam(defaultValue = "0", required = false) Integer pageNumber) {
+    public BookMarkDto getAllBookmarks(@NotNull @RequestParam(defaultValue = "0", required = false) Integer pageNumber) {
         return bookmarkService.getAll(pageNumber);
     }
 }
