@@ -19,6 +19,6 @@ public class BookmarkService {
     public BookMarkDto getAll(Integer pageNumber) {
         pageNumber = pageNumber < 1 ? 0 : pageNumber - 1;
         PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.Direction.DESC, "createdAt");
-        return new BookMarkDto(bookmarkRepository.findAll(pageRequest));
+        return new BookMarkDto(bookmarkRepository.findBookMarks(pageRequest));
     }
 }

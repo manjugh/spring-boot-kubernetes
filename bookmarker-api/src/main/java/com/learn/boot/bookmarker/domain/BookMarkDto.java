@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 public class BookMarkDto {
 
-    private List<BookMarkerEntity> data;
+    private List<BookMarks> data;
 
     private long totalElements;
 
@@ -27,7 +27,7 @@ public class BookMarkDto {
 
     private boolean hasPrevious;
 
-    public BookMarkDto(Page<BookMarkerEntity> page) {
+    public BookMarkDto(Page<BookMarks> page) {
         this.data = page.getContent();
         this.totalElements = page.getTotalElements();
         this.totalPages = page.getTotalPages();
