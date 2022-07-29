@@ -27,3 +27,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - if: ${{github.ref == 'refs/heads/none'}}
+      name: Build and publish docker
+      run: |
+        mvn clean install jib:dockerBuild -DskipTests
+        docker login -u ${{secrets:DOCKER_USERNAME}} -P ${{secrets.DOCKER_PASSWORD}}
+        docker push ${{secrets.DOCKER_USERNAME}}/bookmarker-api
