@@ -20,3 +20,6 @@ https://github.com/GoogleContainerTools/jib/tree/master/examples/spring-boot
 Command to run the container:
 
 docker container run -p 8080:8080 mgh/bookmark-api:1.0
+
+
+mvn dependency:tree -Dincludes=io.micrometer:micrometer-core
