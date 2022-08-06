@@ -1,5 +1,6 @@
 package com.learn.boot.bookmarker.controller;
 
+import com.learn.boot.bookmarker.domain.BookMarkCreateRequest;
 import com.learn.boot.bookmarker.entity.BookMarkerEntity;
 import com.learn.boot.bookmarker.repositories.BookmarkRepository;
 import org.hamcrest.CoreMatchers;
@@ -60,6 +61,17 @@ public class BookMarkControllerIntegrationTest {
                 .andExpect(jsonPath("$.totalElements", CoreMatchers.equalTo(totalElements)))
                 .andExpect(jsonPath("$.totalPages", CoreMatchers.equalTo(totalPages)));
                 //.andExpect(jsonPath("$.currentPage", CoreMatchers.equalTo(currentPage)));
+    }
+
+    @Test
+    void createBookMark() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/bookmarks",new BookMarkCreateRequest("localhost","http://localhost")).contentType("application/json").content("""
+                        {
+                            "title":"test title",
+                            "url":"http://localhost:8080"
+                        } """))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(jsonPath("$.title",CoreMatchers.equalTo("test title")));
     }
 
 }

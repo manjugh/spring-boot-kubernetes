@@ -24,7 +24,7 @@ public class BookMarkerEntity {
 
     @Id
     @SequenceGenerator(sequenceName = "bookmark_id_seq", name = "bookmark_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="bookmark_id_seq")
     private Long id;
 
     @Column(name = "title")
